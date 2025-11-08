@@ -50,8 +50,8 @@ class Food(pygame.sprite.Sprite):
             self.rect.y += self.fall_rate
         else:
             self.rect.y = 0
-            self.rect.x = random.uniform(80.0, float(self.screen_w - 80))            # Food.fall_rate = min(Food.fall_rate * 1.5, Food.MAX_FALL_RATE)
-            Food.fall_rate = min (Food.fall_rate * 1.1, Food.MAX_FALL_RATE)
+            self.rect.x = random.uniform(80.0, float(self.screen_w - 80))         
+            Food.fall_rate = min(Food.fall_rate * 1.1, Food.MAX_FALL_RATE)
 
     
             
@@ -85,3 +85,12 @@ class Enemy(pygame.sprite.Sprite):
                 
     def update(self):
         self.fall()
+
+class Menu:
+    pass
+    # imporrt buttons  and impliment them into a pause menu
+    # eg:
+    # ------ Puase -------
+    # Resume
+    # Options
+    # quit 

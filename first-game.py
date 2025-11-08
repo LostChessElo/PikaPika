@@ -1,6 +1,6 @@
 import pygame 
 import os
-from oop_game import Player, Food, Enemy
+from Game_objects import Player, Food, Enemy
 import time
 
 pygame.init()
@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont("comic sans", 36)
 died = False
 
-pygame.time.delay(25)
+pygame.time.delay(125)
 run = True
 while run:
     # pygame.time.delay(550)
@@ -50,7 +50,7 @@ while run:
     enemy_collision = pygame.sprite.spritecollide(enemy, sprite_groups, True)
     
     if food_collision:
-        collision = True
+        collision = True # i forgot what i wanted to do with this too lazy to change it now 
         new_food = Food(W, H, collision)
         new_food.fall_rate = food.fall_rate 
         food_group.add(new_food)
