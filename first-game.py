@@ -51,7 +51,6 @@ while run:
     
     if food_collision:
         collision = True
-        # enemies.add(Enemy(W,H,collision))
         new_food = Food(W, H, collision)
         new_food.fall_rate = food.fall_rate 
         food_group.add(new_food)

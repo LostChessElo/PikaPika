@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
         self.x, self.y = x, y
         self.w, self.h = 75, 75 
         self.screen_w, self.screen_h = screen_width, screen_height
-        self.image = pygame.image.load("player.png").convert_alpha()
+        self.image = pygame.image.load(os.path.join("images", "player.png")).convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.w,self.h))
         self.rect = self.image.get_rect(center = (x, y))
         self.speed = 10
