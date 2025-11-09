@@ -12,7 +12,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load(os.path.join("images", "player.png")).convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.w,self.h))
         self.rect = self.image.get_rect(center = (x, y))
-        self.speed = 10
+        self.speed = 7.25
         self.v = 0 # pygame takes down as positive
         self.jump_strength = - 17 
         self.jumped = False
