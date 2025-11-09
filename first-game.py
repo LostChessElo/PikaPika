@@ -1,6 +1,6 @@
 import pygame 
 import os
-from Game_objects import Player, Food, Enemy
+from Game_objects import Player, Food, Enemy, Floor
 import time
 
 #initialize pygame
@@ -19,20 +19,21 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont("comic sans", 36)
 
 
-    
 def objects():
-
-    player = Player(W // 2, H // 2, W, H)
-    food = Food(W, H)
-    enemy = Enemy(W, H)
+    dt = clock.tick(120) / 1000
+    floor = Floor(W, H)
+    player = Player(W // 2, 575, W, H, floor)
+    food = Food(W, H, floor)
+    enemy = Enemy(W, H, floor)
     sprite_groups = pygame.sprite.Group(player)
-    food_group = pygame.sprite.Group(food) 
+    food_group = pygame.sprite.Group(food)
     enemies = pygame.sprite.Group(enemy)     
+    
 
-    return player, food, enemy, sprite_groups, food_group, enemies
+    return player, food, enemy, sprite_groups, food_group, enemies, floor
 
 
-def game_loop(player: object, food: object , enemy: object, sprite_groups: object , food_group: object , enemies: object):
+def game_loop(player: object, food: object , enemy: object, sprite_groups: object , food_group: object , enemies: object, floor: object):
 
     pygame.time.delay(200)
     score = 0
@@ -59,10 +60,10 @@ def game_loop(player: object, food: object , enemy: object, sprite_groups: objec
         screen.blit(screen_txt, (10,10))
         food_collision = pygame.sprite.spritecollide(player, food_group, True)
         enemy_collision = pygame.sprite.spritecollide(enemy, sprite_groups, True)
-        
+
         if food_collision:
 
-            new_food = Food(W, H)
+            new_food = Food(W, H, floor)
             new_food.fall_rate = food.fall_rate 
             food_group.add(new_food)
             score += 1
@@ -75,14 +76,15 @@ def game_loop(player: object, food: object , enemy: object, sprite_groups: objec
             run = False
 
         pygame.display.flip()
- 
+
+        
     pygame.time.delay(2000)   
     pygame.quit
 
 
 def main():
-    player, food, enemy, sprite_groups, food_group, enemies = objects()
-    game_loop(player, food, enemy, sprite_groups, food_group, enemies)
+    player, food, enemy, sprite_groups, food_group, enemies, floor = objects()
+    game_loop(player, food, enemy, sprite_groups, food_group, enemies, floor)
 
 
 if __name__ == '__main__':
