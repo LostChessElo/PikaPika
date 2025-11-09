@@ -8,7 +8,7 @@ pygame.init()
 pygame.font.init()
 
 # create window 
-W, H = 900, 650
+W, H = 1080, 650
 screen = pygame.display.set_mode((W, H))
 pygame.display.set_caption("First game")
 backgroung_img = pygame.image.load(os.path.join('images', 'background.jpg')).convert()
@@ -67,6 +67,7 @@ def game_loop(player: object, food: object , enemy: object, sprite_groups: objec
             new_food.fall_rate = food.fall_rate 
             food_group.add(new_food)
             score += 1
+
 
         elif player not in sprite_groups:
             lost = font.render(f"YOU DIED!! Final score {score}", True, (255,0,0))

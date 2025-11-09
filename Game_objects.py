@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, screen_width, screen_height, floor):
         super().__init__()
         self.x, self.y = x, y
-        self.w, self.h = 75, 75 
+        self.w, self.h = 95, 105 
         self.screen_w, self.screen_h = screen_width, screen_height
         self.image = pygame.image.load(os.path.join("images", "player.png")).convert_alpha()
         self.image = pygame.transform.scale(self.image, (self.w,self.h))
@@ -78,7 +78,7 @@ class Food(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     
     fall_rate = 2
-    MAX_FALL_RATE = 35
+    MAX_FALL_RATE = 15
 
     def __init__(self, screen_width, screen_height, floor):
         super().__init__()
@@ -96,8 +96,9 @@ class Enemy(pygame.sprite.Sprite):
 
         else:
             self.rect.y = 0
-            self.rect.x = random.randint(self.screen_w // 2, self.screen_w - 80)
-            Enemy.fall_rate = min(Enemy.fall_rate * 1.1, Enemy.MAX_FALL_RATE)
+            self.rect.x =  random.uniform(80.0, float(self.screen_w - 80))  
+            if Enemy.fall_rate <= Enemy.MAX_FALL_RATE:
+                Enemy.fall_rate = min(Enemy.fall_rate * 1.1, Enemy.MAX_FALL_RATE)
     
     def update(self):
         self.fall()
